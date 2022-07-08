@@ -1,6 +1,7 @@
 package com.alexlin7.demo.controller;
 
 import com.alexlin7.demo.entity.Product;
+import com.alexlin7.demo.entity.ProductRequest;
 import com.alexlin7.demo.parameter.ProductQueryParameter;
 import com.alexlin7.demo.service.ProductService;
 
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    public ResponseEntity<Product> createProduct(@RequestBody Product request){
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody ProductRequest request){
         Product product = productService.createProduct(request);
 
         URI location = ServletUriComponentsBuilder
@@ -51,7 +53,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<Product> replaceProduct(
             @PathVariable("id") String id,
-            @RequestBody Product request) {
+            @Valid @RequestBody ProductRequest request) {
         Product product = productService.replaceProduct(id, request);
         return ResponseEntity.ok(product);
     }

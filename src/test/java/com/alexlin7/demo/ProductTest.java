@@ -171,4 +171,33 @@ public class ProductTest {
                 mockHttpResponse.getHeader(HttpHeaders.CONTENT_TYPE));
     }
 
+    @Test
+    public void get400WhenCreateProductWithEmptyName() throws Exception {
+        JSONObject jsonObject = new JSONObject()
+                .put("name", "")
+                .put("price", 400);
+
+        mockMvc.perform(post("/products")
+                .headers(httpHeaders)
+                .content(jsonObject.toString()))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public  void get400WhenReplaceProductWithNegativePrice() throws Exception {
+        Product product = new Product();
+        product.setName("一龍馬");
+        product.setPrice(7414);
+        productRepository.insert(product);
+
+        JSONObject request = new JSONObject()
+                .put("name", "一龍馬")
+                .put("price", -1410);
+
+        mockMvc.perform(put("/products/" + product.getId())
+                .headers(httpHeaders)
+                .content(request.toString()))
+                .andExpect(status().isBadRequest());
+    }
+
 }

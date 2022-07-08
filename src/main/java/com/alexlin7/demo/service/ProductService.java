@@ -1,6 +1,7 @@
 package com.alexlin7.demo.service;
 
 import com.alexlin7.demo.entity.Product;
+import com.alexlin7.demo.entity.ProductRequest;
 import com.alexlin7.demo.exception.NotFoundException;
 import com.alexlin7.demo.parameter.ProductQueryParameter;
 
@@ -21,7 +22,7 @@ public class ProductService {
         this.repository= repository;
     }
 
-    public Product createProduct(Product request) {
+    public Product createProduct(ProductRequest request) {
         Product product = new Product();
         product.setName(request.getName());
         product.setPrice(request.getPrice());
@@ -34,7 +35,7 @@ public class ProductService {
                 .orElseThrow(() -> new NotFoundException("Can't find product."));
     }
 
-    public Product replaceProduct(String id, Product request) {
+    public Product replaceProduct(String id, ProductRequest request) {
         Product oldProduct = getProduct(id);
 
         Product product = new Product();
