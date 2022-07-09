@@ -1,7 +1,9 @@
 package com.alexlin7.demo.service;
 
+import com.alexlin7.demo.converter.ProductConverter;
 import com.alexlin7.demo.entity.Product;
 import com.alexlin7.demo.entity.ProductRequest;
+import com.alexlin7.demo.entity.ProductResponse;
 import com.alexlin7.demo.exception.NotFoundException;
 import com.alexlin7.demo.parameter.ProductQueryParameter;
 
@@ -22,12 +24,14 @@ public class ProductService {
         this.repository= repository;
     }
 
-    public Product createProduct(ProductRequest request) {
+    public ProductResponse createProduct(ProductRequest request) {
         Product product = new Product();
         product.setName(request.getName());
         product.setPrice(request.getPrice());
 
-        return repository.insert(product);
+        repository.insert(product);
+
+        return ProductConverter.toProductResponse(product);
     }
 
     public Product getProduct(String id) {
@@ -35,15 +39,14 @@ public class ProductService {
                 .orElseThrow(() -> new NotFoundException("Can't find product."));
     }
 
-    public Product replaceProduct(String id, ProductRequest request) {
+    public ProductResponse replaceProduct(String id, ProductRequest request) {
         Product oldProduct = getProduct(id);
+        Product newProduct = ProductConverter.toProduct(request);
+        newProduct.setId(oldProduct.getId());
 
-        Product product = new Product();
-        product.setId(oldProduct.getId());
-        product.setName(request.getName());
-        product.setPrice(request.getPrice());
+        repository.save(newProduct);
 
-        return repository.save(product);
+        return ProductConverter.toProductResponse(newProduct);
     }
 
     public  void deleteProduct(String id) {
@@ -70,4 +73,10 @@ public class ProductService {
         return sort;
     }
 
+    public ProductResponse getProductResponse(String id) {
+        Product product = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Can't find product."));
+
+        return ProductConverter.toProductResponse(product);
+    }
 }
