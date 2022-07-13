@@ -2,9 +2,11 @@ package com.alexlin7.demo.config;
 
 import com.alexlin7.demo.service.MailService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
@@ -35,6 +37,7 @@ public class MailConfig {
     private String password;
 
     @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public MailService mailService() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
@@ -46,6 +49,8 @@ public class MailConfig {
         props.put("mail.smtp.auth", authEnable);
         props.put("mail.smtp.starttls.enable", starttlsEnable);
         props.put("mail.transport.protocol", protocol);
+
+        System.out.println("Mail Service is created.");
 
         return new MailService(mailSender);
     }

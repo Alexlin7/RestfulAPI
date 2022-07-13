@@ -18,8 +18,11 @@ public class ProductService {
 
     private final ProductRepository repository;
 
-    public ProductService(ProductRepository repository) {
+    private final MailService mailService;
+
+    public ProductService(ProductRepository repository, MailService mailService) {
         this.repository= repository;
+        this.mailService = mailService;
     }
 
     public ProductResponse createProduct(ProductRequest request) {
@@ -28,6 +31,8 @@ public class ProductService {
         product.setPrice(request.getPrice());
 
         repository.insert(product);
+
+        mailService.sendNewProductMail(product.getId());
 
         return ProductConverter.toProductResponse(product);
     }
@@ -49,6 +54,7 @@ public class ProductService {
 
     public  void deleteProduct(String id) {
         repository.deleteById(id);
+        mailService.sendDeleteProductMail(id);
     }
 
     public List<Product> getProducts(ProductQueryParameter parm) {

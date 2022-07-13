@@ -37,4 +37,4 @@ mvnw
 mvnw.cmd
 
 ### mail server ###
-src/main/resources/mail.properties
+.properties

@@ -7,31 +7,70 @@ import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import javax.annotation.PreDestroy;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class MailService {
 
     private final JavaMailSenderImpl mailSender;
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final long tag;
+    private final List<String> mailMessages;
+    private final String LOG_EMAIL;
 
     public MailService (JavaMailSenderImpl mailSender) {
         this.mailSender = mailSender;
+        this.tag = System.currentTimeMillis();
+        this.mailMessages = new ArrayList<>();
+        this.LOG_EMAIL = mailSender.getUsername();
     }
 
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     public void sendMail(SendMailRequest request) {
+        sendMail(request.getSubject(), request.getContent(), request.getReceivers());
+    }
+
+    public void sendMail(String subject, String content, List<String> receivers) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(Objects.requireNonNull(mailSender.getUsername()));
-        message.setTo(request.getReceivers());
-        message.setSubject(request.getSubject());
-        message.setText(request.getContent());
+        message.setTo(receivers.toArray(new String[0]));
+        message.setSubject(subject);
+        message.setText(content);
 
         try {
             mailSender.send(message);
+            mailMessages.add(content);
+            printMessages();
         } catch (MailAuthenticationException e) {
             LOGGER.error(e.getMessage());
         } catch (Exception e) {
             LOGGER.warn(e.getMessage());
         }
     }
+
+    public void sendNewProductMail(String id) {
+        String content = String.format("there is a new created product (%s)", id);
+        sendMail("New Product", content,
+                Collections.singletonList(LOG_EMAIL));
+    }
+
+    private void printMessages() {
+        System.out.println("----------");
+        mailMessages.forEach(System.out::println);
+    }
+
+    public void sendDeleteProductMail(String productId) {
+        String content = String.format("There's a product deleted (%s).", productId);
+        sendMail("Product Deleted", content,
+                Collections.singletonList(LOG_EMAIL));
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("##########");
+        System.out.printf("Spring Boot is about to destroy Mail Service %d.\n\n", tag);
+    }
+
 }
