@@ -1,6 +1,6 @@
 package com.alexlin7.demo.repository;
 
-import com.alexlin7.demo.entity.Product;
+import com.alexlin7.demo.entity.product.Product;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

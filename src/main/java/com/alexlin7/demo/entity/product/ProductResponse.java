@@ -1,4 +1,4 @@
-package com.alexlin7.demo.entity;
+package com.alexlin7.demo.entity.product;
 
 import lombok.Getter;
 import lombok.Setter;

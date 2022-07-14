@@ -1,4 +1,4 @@
-package com.alexlin7.demo.entity;
+package com.alexlin7.demo.entity.mail;
 
 import lombok.Getter;
 import lombok.Setter;

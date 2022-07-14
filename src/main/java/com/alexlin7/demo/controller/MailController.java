@@ -1,6 +1,6 @@
 package com.alexlin7.demo.controller;
 
-import com.alexlin7.demo.entity.SendMailRequest;
+import com.alexlin7.demo.entity.mail.SendMailRequest;
 import com.alexlin7.demo.service.MailService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

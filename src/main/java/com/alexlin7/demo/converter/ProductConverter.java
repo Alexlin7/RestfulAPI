@@ -1,8 +1,8 @@
 package com.alexlin7.demo.converter;
 
-import com.alexlin7.demo.entity.Product;
-import com.alexlin7.demo.entity.ProductRequest;
-import com.alexlin7.demo.entity.ProductResponse;
+import com.alexlin7.demo.entity.product.Product;
+import com.alexlin7.demo.entity.product.ProductRequest;
+import com.alexlin7.demo.entity.product.ProductResponse;
 
 public class ProductConverter {
 
