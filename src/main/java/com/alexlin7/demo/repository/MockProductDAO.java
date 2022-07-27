@@ -61,7 +61,7 @@ public class MockProductDAO {
 
     private Comparator<Product> genSortComparator(String orderBy, String sortRule) {
         Comparator<Product> comparator = (p1, p2) -> 0;
-        if(Objects.isNull(orderBy) || Objects.isNull(sortRule)) {
+        if (Objects.isNull(orderBy) || Objects.isNull(sortRule)) {
             return comparator;
         }
         if (orderBy.equalsIgnoreCase("price")) {

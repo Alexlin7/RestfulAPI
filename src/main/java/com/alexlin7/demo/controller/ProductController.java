@@ -33,13 +33,13 @@ public class ProductController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Product>> getProducts(@ModelAttribute ProductQueryParameter parm){
+    public ResponseEntity<List<Product>> getProducts(@ModelAttribute ProductQueryParameter parm) {
         List<Product> products = productService.getProducts(parm);
         return ResponseEntity.ok(products);
     }
 
     @PostMapping()
-    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request){
+    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse product = productService.createProduct(request);
 
         URI location = ServletUriComponentsBuilder

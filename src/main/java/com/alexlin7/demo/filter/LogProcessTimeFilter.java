@@ -13,10 +13,10 @@ public class LogProcessTimeFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         long startTime = System.currentTimeMillis();
         chain.doFilter(request, response);
-        long processTime =  System.currentTimeMillis() - startTime;
+        long processTime = System.currentTimeMillis() - startTime;
         System.out.println(processTime + "ms");
     }
 }

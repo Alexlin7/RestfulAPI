@@ -5,6 +5,7 @@ import com.alexlin7.demo.filter.LogProcessTimeFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 @Configuration
 public class FilterConfig {
 
@@ -20,7 +21,7 @@ public class FilterConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<LogProcessTimeFilter> logProcessTimeFilter(){
+    public FilterRegistrationBean<LogProcessTimeFilter> logProcessTimeFilter() {
         FilterRegistrationBean<LogProcessTimeFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new LogProcessTimeFilter());
         bean.addUrlPatterns("/*");

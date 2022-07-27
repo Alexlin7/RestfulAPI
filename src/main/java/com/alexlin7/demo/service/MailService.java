@@ -21,7 +21,7 @@ public class MailService {
     private final List<String> mailMessages;
     private final String LOG_EMAIL;
 
-    public MailService (JavaMailSenderImpl mailSender) {
+    public MailService(JavaMailSenderImpl mailSender) {
         this.mailSender = mailSender;
         this.tag = System.currentTimeMillis();
         this.mailMessages = new ArrayList<>();

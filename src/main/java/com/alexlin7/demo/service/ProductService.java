@@ -21,7 +21,7 @@ public class ProductService {
     private final MailService mailService;
 
     public ProductService(ProductRepository repository, MailService mailService) {
-        this.repository= repository;
+        this.repository = repository;
         this.mailService = mailService;
     }
 
@@ -52,7 +52,7 @@ public class ProductService {
         return ProductConverter.toProductResponse(newProduct);
     }
 
-    public  void deleteProduct(String id) {
+    public void deleteProduct(String id) {
         repository.deleteById(id);
         mailService.sendDeleteProductMail(id);
     }
@@ -64,7 +64,7 @@ public class ProductService {
 
         Sort sort = genSortingStrategy(parm.getOrderBy(), parm.getSortRule());
 
-        return  repository.findByPriceBetweenAndNameLikeIgnoreCase(priceFrom, priceTo, keyword, sort);
+        return repository.findByPriceBetweenAndNameLikeIgnoreCase(priceFrom, priceTo, keyword, sort);
     }
 
     private Sort genSortingStrategy(String orderBy, String sortRule) {

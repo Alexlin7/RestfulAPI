@@ -6,7 +6,8 @@ import com.alexlin7.demo.entity.product.ProductResponse;
 
 public class ProductConverter {
 
-    private ProductConverter() {}
+    private ProductConverter() {
+    }
 
     public static Product toProduct(ProductRequest request) {
         Product product = new Product();
