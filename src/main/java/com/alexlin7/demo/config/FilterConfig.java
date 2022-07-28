@@ -34,9 +34,4 @@ public class FilterConfig {
         return bean;
     }
 
-    @Bean
-    public JWTAuthenticationFilter jwtAuthenticationFilter(JWTServer jwtServer,
-                                                           UserDetailsService userDetailsService) {
-        return new JWTAuthenticationFilter(jwtServer, userDetailsService);
-    }
 }
