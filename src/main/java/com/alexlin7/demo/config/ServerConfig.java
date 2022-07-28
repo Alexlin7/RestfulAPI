@@ -26,4 +26,5 @@ public class ServerConfig {
     public AppUserService appUserService(AppUserRepository repository) {
         return new AppUserService(repository);
     }
+
 }

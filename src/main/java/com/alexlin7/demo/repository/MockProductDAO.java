@@ -2,7 +2,6 @@ package com.alexlin7.demo.repository;
 
 import com.alexlin7.demo.entity.product.Product;
 import com.alexlin7.demo.parameter.ProductQueryParameter;
-
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;

@@ -5,7 +5,6 @@ import com.alexlin7.demo.entity.product.ProductRequest;
 import com.alexlin7.demo.entity.product.ProductResponse;
 import com.alexlin7.demo.parameter.ProductQueryParameter;
 import com.alexlin7.demo.service.ProductService;
-
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
