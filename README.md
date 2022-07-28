@@ -2,9 +2,17 @@
 
 ### 嘗試自己撰寫一個Spring boot專案
 
-using spring boot
+| tool            | version |
+|-----------------|---------|
+| Spring Boot     | 2.7.1   |
+| MongoDB         | 5.0.9   |
+| jwtk/jjwt       | 0.11.5  |
+| Lombok          | 1.18.24 |
+| Junit           | 4.13.2  |
+| Spring Security | 5.7.2   |
+| tomcat          | 9.0.64  |
 
-* 參考資料來源:https://chikuwa-tech-study.blogspot.com/
+* 參考資料來源(References):https://chikuwa-tech-study.blogspot.com/
 
 ### enable MailServer
 * add **mail.properties** in resources/
