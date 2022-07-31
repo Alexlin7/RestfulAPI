@@ -4,6 +4,7 @@
 
 | tool            | version |
 |-----------------|---------|
+| Corretto JDK    | 17.0.4  |
 | Spring Boot     | 2.7.1   |
 | MongoDB         | 5.0.9   |
 | jwtk/jjwt       | 0.11.5  |
