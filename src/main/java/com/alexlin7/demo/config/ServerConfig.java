@@ -16,8 +16,6 @@ public class ServerConfig {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public ProductService productService(ProductRepository repository, MailService mailService) {
-        System.out.println("Product Service is created.");
-
         return new ProductService(repository, mailService);
     }
 

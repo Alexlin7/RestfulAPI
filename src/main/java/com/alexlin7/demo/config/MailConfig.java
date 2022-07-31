@@ -51,8 +51,6 @@ public class MailConfig {
         props.put("mail.smtp.starttls.enable", starttlsEnable);
         props.put("mail.transport.protocol", protocol);
 
-        System.out.println("Mail Service is created.");
-
         return new MailService(mailSender, userIdentity);
     }
 }

@@ -53,8 +53,8 @@ public class BaseTest {
     protected AppUser createUser(String name, List<UserAuthority> authorities) {
         AppUser appUser = new AppUser();
         appUser.setEmailAddress(name);
-        appUser.setPassword(new BCryptPasswordEncoder().encode(USER_PASSWORD));
-        appUser.setName("name");
+        appUser.setPassword(passwordEncoder.encode(USER_PASSWORD));
+        appUser.setName(name);
         appUser.setAuthorities(authorities);
 
         return appUserRepository.insert(appUser);
