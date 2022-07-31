@@ -1,5 +1,6 @@
 package com.alexlin7.demo.config;
 
+import com.alexlin7.demo.auth.UserIdentity;
 import com.alexlin7.demo.service.MailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -38,7 +39,7 @@ public class MailConfig {
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public MailService mailService() {
+    public MailService mailService(UserIdentity userIdentity) {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
         mailSender.setPort(port);
@@ -52,6 +53,6 @@ public class MailConfig {
 
         System.out.println("Mail Service is created.");
 
-        return new MailService(mailSender);
+        return new MailService(mailSender, userIdentity);
     }
 }
