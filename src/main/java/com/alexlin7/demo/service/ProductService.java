@@ -1,5 +1,8 @@
 package com.alexlin7.demo.service;
 
+import com.alexlin7.demo.aop.ActionType;
+import com.alexlin7.demo.aop.EntityType;
+import com.alexlin7.demo.aop.SendEmail;
 import com.alexlin7.demo.auth.UserIdentity;
 import com.alexlin7.demo.converter.ProductConverter;
 import com.alexlin7.demo.entity.product.Product;
@@ -22,13 +25,12 @@ public class ProductService {
 
     private final ProductRepository repository;
 
-    private final MailService mailService;
 
-    public ProductService(ProductRepository repository, MailService mailService) {
+    public ProductService(ProductRepository repository) {
         this.repository = repository;
-        this.mailService = mailService;
     }
 
+    @SendEmail(entity = EntityType.PRODUCT, action = ActionType.CRATE)
     public ProductResponse createProduct(ProductRequest request) {
         Product product = new Product();
         product.setName(request.getName());
@@ -36,8 +38,6 @@ public class ProductService {
         product.setCreator(userIdentity.getId());
 
         repository.insert(product);
-
-        mailService.sendNewProductMail(product.getId());
 
         return ProductConverter.toProductResponse(product);
     }
@@ -47,6 +47,7 @@ public class ProductService {
                 .orElseThrow(() -> new NotFoundException("Can't find product."));
     }
 
+    @SendEmail(entity = EntityType.PRODUCT, action = ActionType.UPDATE, idParmIndex = 0)
     public ProductResponse replaceProduct(String id, ProductRequest request) {
         Product oldProduct = getProduct(id);
         Product newProduct = ProductConverter.toProduct(request);
@@ -58,9 +59,9 @@ public class ProductService {
         return ProductConverter.toProductResponse(newProduct);
     }
 
+    @SendEmail(entity = EntityType.PRODUCT, action = ActionType.DELETE, idParmIndex = 0)
     public void deleteProduct(String id) {
         repository.deleteById(id);
-        mailService.sendDeleteProductMail(id);
     }
 
     public List<Product> getProducts(ProductQueryParameter parm) {

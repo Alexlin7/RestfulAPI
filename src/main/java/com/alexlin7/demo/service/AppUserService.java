@@ -1,5 +1,8 @@
 package com.alexlin7.demo.service;
 
+import com.alexlin7.demo.aop.ActionType;
+import com.alexlin7.demo.aop.EntityType;
+import com.alexlin7.demo.aop.SendEmail;
 import com.alexlin7.demo.converter.AppUserConverter;
 import com.alexlin7.demo.entity.appUser.AppUser;
 import com.alexlin7.demo.entity.appUser.AppUserRequest;
@@ -23,6 +26,7 @@ public class AppUserService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
+    @SendEmail(entity = EntityType.APP_USER, action = ActionType.CRATE)
     public AppUserResponse createUser(AppUserRequest request) {
         Optional<AppUser> existingUser = repository.findByEmailAddress(request.getEmailAddress());
         if (existingUser.isPresent()) {
