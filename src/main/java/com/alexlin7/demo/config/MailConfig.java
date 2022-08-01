@@ -1,6 +1,5 @@
 package com.alexlin7.demo.config;
 
-import com.alexlin7.demo.auth.UserIdentity;
 import com.alexlin7.demo.service.MailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -39,7 +38,7 @@ public class MailConfig {
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public MailService mailService(UserIdentity userIdentity) {
+    public MailService mailService() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
         mailSender.setPort(port);
@@ -51,6 +50,6 @@ public class MailConfig {
         props.put("mail.smtp.starttls.enable", starttlsEnable);
         props.put("mail.transport.protocol", protocol);
 
-        return new MailService(mailSender, userIdentity);
+        return new MailService(mailSender);
     }
 }
