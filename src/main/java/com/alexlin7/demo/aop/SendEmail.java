@@ -9,6 +9,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SendEmail {
     EntityType entity();
+
     ActionType action();
+
     int idParmIndex() default -1;
 }

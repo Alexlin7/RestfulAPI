@@ -11,7 +11,6 @@ import com.alexlin7.demo.entity.product.ProductResponse;
 import com.alexlin7.demo.exception.NotFoundException;
 import com.alexlin7.demo.parameter.ProductQueryParameter;
 import com.alexlin7.demo.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;

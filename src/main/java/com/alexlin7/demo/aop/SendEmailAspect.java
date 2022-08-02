@@ -17,10 +17,6 @@ import java.util.Map;
 @Component
 @Aspect
 public class SendEmailAspect {
-    private final UserIdentity userIdentity;
-
-    private final MailService mailService;
-
     private static final Map<ActionType, String> SUBJECT_TEMPLATE_MAP;
     private static final Map<ActionType, String> MESSAGE_TEMPLATE_MAP;
 
@@ -36,17 +32,20 @@ public class SendEmailAspect {
         MESSAGE_TEMPLATE_MAP.put(ActionType.DELETE, "Hi, %s. A %s (%s) is just deleted.");
     }
 
+    private final UserIdentity userIdentity;
+    private final MailService mailService;
+
     public SendEmailAspect(UserIdentity userIdentity, MailService mailService) {
         this.userIdentity = userIdentity;
         this.mailService = mailService;
     }
 
     @Pointcut("@annotation(com.alexlin7.demo.aop.SendEmail)")
-    public void pointcut(){
+    public void pointcut() {
     }
 
     @AfterReturning(pointcut = "pointcut()", returning = "result")
-    public void sendEmail(JoinPoint joinPoint, Object result){
+    public void sendEmail(JoinPoint joinPoint, Object result) {
         if (userIdentity.isAnonymous()) {
             return;
         }
