@@ -1,4 +1,4 @@
-package com.alexlin7.demo;
+package com.alexlin7.demo.unit;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;

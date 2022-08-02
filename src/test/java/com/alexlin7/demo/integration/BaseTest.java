@@ -1,4 +1,4 @@
-package com.alexlin7.demo;
+package com.alexlin7.demo.integration;
 
 import com.alexlin7.demo.auth.AuthRequest;
 import com.alexlin7.demo.entity.appUser.AppUser;
