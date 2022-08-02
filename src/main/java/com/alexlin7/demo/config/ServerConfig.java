@@ -1,5 +1,6 @@
 package com.alexlin7.demo.config;
 
+import com.alexlin7.demo.auth.UserIdentity;
 import com.alexlin7.demo.repository.AppUserRepository;
 import com.alexlin7.demo.repository.ProductRepository;
 import com.alexlin7.demo.service.AppUserService;
@@ -14,8 +15,8 @@ public class ServerConfig {
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public ProductService productService(ProductRepository repository) {
-        return new ProductService(repository);
+    public ProductService productService(ProductRepository repository, UserIdentity userIdentity) {
+        return new ProductService(repository, userIdentity);
     }
 
     @Bean

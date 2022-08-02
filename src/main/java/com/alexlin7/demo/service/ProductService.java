@@ -20,14 +20,14 @@ import java.util.Optional;
 
 public class ProductService {
 
-    @Autowired
-    private UserIdentity userIdentity;
+    private final UserIdentity userIdentity;
 
     private final ProductRepository repository;
 
 
-    public ProductService(ProductRepository repository) {
+    public ProductService(ProductRepository repository, UserIdentity userIdentity) {
         this.repository = repository;
+        this.userIdentity = userIdentity;
     }
 
     @SendEmail(entity = EntityType.PRODUCT, action = ActionType.CRATE)
