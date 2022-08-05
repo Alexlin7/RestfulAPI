@@ -52,7 +52,7 @@ public class BaseTest {
 
     protected AppUser createUser(String name, List<UserAuthority> authorities) {
         AppUser appUser = new AppUser();
-        appUser.setEmailAddress(name);
+        appUser.setEmailAddress(name + "@test.com");
         appUser.setPassword(passwordEncoder.encode(USER_PASSWORD));
         appUser.setName(name);
         appUser.setAuthorities(authorities);
