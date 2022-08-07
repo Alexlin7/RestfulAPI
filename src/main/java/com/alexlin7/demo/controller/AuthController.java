@@ -2,6 +2,7 @@ package com.alexlin7.demo.controller;
 
 import com.alexlin7.demo.auth.AuthRequest;
 import com.alexlin7.demo.auth.JWTServer;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,7 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    @Hidden
     @PostMapping("/parse")
     public ResponseEntity<Map<String, Object>> parseToken(@RequestBody Map<String, String> request) {
         String token = request.get("token");
