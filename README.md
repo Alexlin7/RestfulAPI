@@ -12,6 +12,7 @@
 | Junit           | 4.13.2  |
 | Spring Security | 5.7.2   |
 | tomcat          | 9.0.64  |
+| Swagger         | 2.2.0   |
 
 * 參考資料來源(References):https://chikuwa-tech-study.blogspot.com/
 
