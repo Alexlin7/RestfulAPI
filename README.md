@@ -1,6 +1,6 @@
 # RestfulAPI
 
-### 嘗試自己撰寫一個Spring boot專案
+### 嘗試練習撰寫一個Spring boot專案
 
 | tool            | version |
 |-----------------|---------|
