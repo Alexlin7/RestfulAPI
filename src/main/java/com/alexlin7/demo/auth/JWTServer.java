@@ -23,7 +23,6 @@ public class JWTServer {
 
     private final String KEY = "Alexlin7IsRunningBlogForProgrammingBeginner";
 
-    //beans in the application context form a cycle
     public JWTServer(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
