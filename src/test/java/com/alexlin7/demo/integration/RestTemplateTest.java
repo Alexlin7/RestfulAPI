@@ -155,7 +155,8 @@ public class RestTemplateTest extends BaseTest {
         HttpEntity<Void> httpEntity = new HttpEntity<>(null, null);
         ResponseEntity<ExchangeRateResponse> resEntitiy = restTemplate
                 .exchange(url, HttpMethod.GET, httpEntity,
-                        new ParameterizedTypeReference<ExchangeRateResponse>() {});
+                        new ParameterizedTypeReference<ExchangeRateResponse>() {
+                        });
 
         ExchangeRateResponse exRateRes = resEntitiy.getBody();
         Assert.assertNotNull(exRateRes);
