@@ -6,6 +6,7 @@ import com.alexlin7.demo.service.AppUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+@AllArgsConstructor
 public class AppUserController {
     private final AppUserService service;
-
-    public AppUserController(AppUserService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<AppUserResponse> createUser(@Valid @RequestBody AppUserRequest request) {
