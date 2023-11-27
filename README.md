@@ -16,6 +16,10 @@
 
 * 參考資料來源(References):https://chikuwa-tech-study.blogspot.com/
 
+### Swagger API 文件
+![image](https://github.com/Alexlin7/RestfulAPI-practice/assets/81425837/d138327a-4f6e-4aa3-9b79-83f4bde65605)
+
+
 ### enable MailServer
 * add **mail.properties** in resources/
 
